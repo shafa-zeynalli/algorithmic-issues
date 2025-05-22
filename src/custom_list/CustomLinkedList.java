@@ -40,7 +40,12 @@ public class CustomLinkedList {
             }
         }
     }
+
     public void allList(){
+        if (root==null) {
+            System.out.println("null");
+            return;
+        }
         Node list=root;
 
         while (list.next!=null){
@@ -49,6 +54,44 @@ public class CustomLinkedList {
         }
         System.out.println(list.data);
     }
+
+    public void update(int newData, int oldData){
+        if (root==null) {
+            System.out.println("null");
+            return;
+        }
+        Node current = root;
+
+        while (current != null){
+            if(current.data == oldData){
+                current.data = newData;
+                return;
+            }
+            current=current.next;
+        }
+        System.out.println("yoxdu");
+    }
+    public void delete(int data){
+        if (root==null) {
+            System.out.println("null");
+            return;
+        }
+        if (root.data==data) {
+            root = root.next;
+            return;
+        }
+        Node current = root;
+
+        while (current != null){
+            if(current.next.data == data){
+                current.next = current.next.next;
+                return;
+            }
+            current=current.next;
+        }
+        System.out.println("yoxdu");
+    }
+
 }
 
 class Node{
