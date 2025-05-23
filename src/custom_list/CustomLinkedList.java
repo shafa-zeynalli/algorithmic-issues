@@ -2,18 +2,17 @@ package custom_list;
 
 public class CustomLinkedList {
     private Node root;
+    private Node last;
 
     public void add(int data){
         Node newNode = new Node(data) ;
 
         if(root == null){
             root=newNode;
+            last=newNode;
         }else{
-            Node current=root;
-            while(current.next != null){
-                current=current.next;
-            }
-            current.next=newNode;
+            last.next=newNode;
+            last=newNode;
         }
     }
     //bu metod artan sira ile elave olunur artiq eger artan sirada list saxlamaq isteyirikse bu metodu istfde edcem.
@@ -28,7 +27,7 @@ public class CustomLinkedList {
             boolean isPresent=false;
 
             while(current.next != null){
-                if(current.data<data && current.next.data>data){
+                if(current.data < data && current.next.data > data){
                     newNode.next=current.next;
                     current.next=newNode;
                     isPresent=true;
@@ -78,6 +77,7 @@ public class CustomLinkedList {
         }
         if (root.data==data) {
             root = root.next;
+            if (root==null) last=null;
             return;
         }
         Node current = root;
